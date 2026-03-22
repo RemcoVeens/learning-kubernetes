@@ -11,7 +11,7 @@ metadata:
     app: synergychat-web
   name: synergychat-web
   namespace: default
-  resourceVersion: "3596"
+  resourceVersion: "12912"
   uid: 1ad5ddd3-8d6e-4dfa-8d12-23029fe1b302
 spec:
   progressDeadlineSeconds: 600
@@ -31,12 +31,15 @@ spec:
         app: synergychat-web
     spec:
       containers:
-      - image: docker.io/bootdotdev/synergychat-web:latest
-        imagePullPolicy: Always
-        name: synergychat-web
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
+        - image: docker.io/bootdotdev/synergychat-web:latest
+          imagePullPolicy: Always
+          name: synergychat-web
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          envFrom:
+            - configMapRef:
+                name: synergychat-web-configmap
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -45,18 +48,18 @@ spec:
 status:
   availableReplicas: 3
   conditions:
-  - lastTransitionTime: "2026-03-21T14:40:32Z"
-    lastUpdateTime: "2026-03-21T14:40:36Z"
-    message: ReplicaSet "synergychat-web-f7b9f96dd" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  - lastTransitionTime: "2026-03-21T15:08:58Z"
-    lastUpdateTime: "2026-03-21T15:08:58Z"
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
+    - lastTransitionTime: "2026-03-21T14:40:32Z"
+      lastUpdateTime: "2026-03-21T14:40:36Z"
+      message: ReplicaSet "synergychat-web-f7b9f96dd" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2026-03-22T13:06:47Z"
+      lastUpdateTime: "2026-03-22T13:06:47Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
   observedGeneration: 6
   readyReplicas: 3
   replicas: 3
