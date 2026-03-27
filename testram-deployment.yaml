@@ -23,3 +23,5 @@ spec:
           resources:
             limits:
               memory: 256Mi
+            requests:
+              memory: 100Mi
